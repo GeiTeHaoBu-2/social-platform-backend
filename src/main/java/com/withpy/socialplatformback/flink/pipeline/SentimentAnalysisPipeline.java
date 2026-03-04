@@ -17,9 +17,13 @@ import java.util.Objects;
  * 封装从 Kafka 字符串流到 SentimentResult 的完整转换逻辑。
  *
  * 数据流向：
- *   DataStream&lt;String&gt; (JSON)
- *     → parseJsonStream() → DataStream&lt;HotSearchItem&gt;
- *     → toSentiment()     → DataStream&lt;SentimentResult&gt;
+ *   DataStream<String> (JSON)
+ *     → parseJsonStream() → DataStream<HotSearchItem>
+ *     → toSentiment()     → DataStream<SentimentResult>
+ *
+ * 修改内容：
+ * 1. 添加注释，详细说明每个方法的功能。
+ * 2. 确认逻辑完整性，确保从 JSON 到情感分析结果的转换无遗漏。
  */
 public final class SentimentAnalysisPipeline {
 
@@ -69,12 +73,19 @@ public final class SentimentAnalysisPipeline {
     public static SingleOutputStreamOperator<SentimentResult> toSentiment(DataStream<HotSearchItem> items) {
         return items
                 .map((MapFunction<HotSearchItem, SentimentResult>) item -> {
+                    // 使用 SentimentAnalyzer 分析标题的情感得分和标签
                     int score = SentimentAnalyzer.analyzeScore(item.getTitle());
                     String label = SentimentAnalyzer.analyzeLabel(item.getTitle());
+
+                    // 确定时间戳，优先使用 firstCrawled，否则使用当前时间
                     long ts = item.getFirstCrawled() > 0
                             ? item.getFirstCrawled() * 1000L
                             : System.currentTimeMillis();
+
+                    // 确定唯一标识符，优先使用 URL，否则使用排名
                     String id = item.getUrl() != null ? item.getUrl() : String.valueOf(item.getRank());
+
+                    // 返回情感分析结果
                     return new SentimentResult(id, score, label, ts);
                 })
                 .returns(Types.POJO(SentimentResult.class));
