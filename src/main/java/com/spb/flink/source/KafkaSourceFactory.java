@@ -1,4 +1,4 @@
-package com.spb.common.kafka;
+package com.spb.flink.source;
 
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.connector.kafka.source.KafkaSource;

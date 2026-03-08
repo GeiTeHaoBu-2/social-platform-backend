@@ -1,9 +1,9 @@
-package com.spb.common.flink.pipeline;
+package com.spb.flink.pipeline;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spb.common.flink.analysis.SentimentAnalyzer;
-import com.spb.common.flink.analysis.SentimentResult;
-import com.spb.common.flink.dto.HotSearchItem;
+import com.spb.flink.job.SentimentAnalyzer;
+import com.spb.flink.sink.SentimentResult;
+import com.spb.common.model.HotSearchItem;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.streaming.api.datastream.DataStream;

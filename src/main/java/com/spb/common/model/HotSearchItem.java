@@ -1,4 +1,4 @@
-package com.spb.common.flink.dto;
+package com.spb.common.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

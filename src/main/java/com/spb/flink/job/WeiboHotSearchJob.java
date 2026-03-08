@@ -1,9 +1,9 @@
-package com.spb.common.flink.job;
+package com.spb.flink.job;
 
-import com.spb.common.flink.analysis.SentimentResult;
-import com.spb.common.flink.dto.HotSearchItem;
-import com.spb.common.flink.pipeline.SentimentAnalysisPipeline;
-import com.spb.common.kafka.KafkaSourceFactory;
+import com.spb.flink.sink.SentimentResult;
+import com.spb.common.model.HotSearchItem;
+import com.spb.flink.pipeline.SentimentAnalysisPipeline;
+import com.spb.flink.source.KafkaSourceFactory;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;

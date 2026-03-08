@@ -1,4 +1,4 @@
-package com.spb.common.kafka;
+package com.spb.flink.source;
 
 import org.apache.kafka.clients.admin.*;
 import org.apache.kafka.common.Node;

@@ -1,4 +1,4 @@
-package com.spb.common.kafka;
+package com.spb.flink.source;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;

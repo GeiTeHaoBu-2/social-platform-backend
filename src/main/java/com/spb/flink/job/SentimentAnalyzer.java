@@ -1,4 +1,4 @@
-package com.spb.common.flink.analysis;
+package com.spb.flink.job;
 
 import java.util.Arrays;
 import java.util.HashSet;

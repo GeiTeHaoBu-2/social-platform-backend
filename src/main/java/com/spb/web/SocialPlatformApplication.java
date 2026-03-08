@@ -1,7 +1,7 @@
-package com.spb.common.web;
+package com.spb.web;
 
-import com.spb.common.flink.job.WeiboHotSearchJob;
-import com.spb.common.kafka.KafkaAdminHelper;
+import com.spb.flink.job.WeiboHotSearchJob;
+import com.spb.flink.source.KafkaAdminHelper;
 import com.spb.common.config.KafkaConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

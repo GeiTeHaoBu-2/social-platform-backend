@@ -1,5 +1,6 @@
 package com.spb.common.flink.analysis;
 
+import com.spb.flink.job.SentimentAnalyzer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,6 +1,7 @@
 package com.spb.common.flink.pipeline;
 
-import com.spb.common.flink.dto.HotSearchItem;
+import com.spb.common.model.HotSearchItem;
+import com.spb.flink.pipeline.SentimentAnalysisPipeline;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
