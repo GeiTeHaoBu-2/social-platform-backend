@@ -8,27 +8,27 @@
 
 ## 一、项目关键文件说明（逐文件）
 
-- `src/main/java/com/withpy/socialplatformback/SocialPlatformBackApplication.java`
+- `src/main/java/com/spb/socialplatformback/SocialPlatformBackApplication.java`
   - Spring Boot 应用入口（`main`），如果你使用 Spring Boot 启动整个应用，这个类负责引导 Spring 容器。
 
-- `src/main/java/com/withpy/socialplatformback/WeiboHotSearchJob.java`
+- `src/main/java/com/spb/socialplatformback/WeiboHotSearchJob.java`
   - Flink 作业的入口类（程序调度点），职责尽量轻量：配置 Flink 执行环境、做 Kafka Admin 的预检查（确保 topic 存在并有分区），创建 Kafka source，并把来源交给 pipeline 去处理；最后启动 Flink 作业并触发窗口聚合与输出。
   - 注意：我已把 Kafka source 与分析逻辑拆分，`WeiboHotSearchJob` 只负责 wiring（连接）和启动。
 
-- `src/main/java/com/withpy/socialplatformback/kafka/KafkaSourceFactory.java`
+- `src/main/java/com/spb/socialplatformback/kafka/KafkaSourceFactory.java`
   - 一个小工厂类，封装创建 `KafkaSource<String>` 的逻辑（bootstrapServers、topic、groupId、起始偏移等）。目的是把 Kafka 客户端相关的代码封装，便于复用和测试。
 
-- `src/main/java/com/withpy/socialplatformback/pipeline/SentimentAnalysisPipeline.java`
+- `src/main/java/com/spb/socialplatformback/pipeline/SentimentAnalysisPipeline.java`
   - 情感分析流水线的封装：把字符串流解析为 `HotSearchItem`（JSON -> DTO），并把 DTO 映射为 `SentimentResult`（调用 `SentimentAnalyzer`）。
   - 包含一个 `parseJson(String)` 的非 Flink 帮助方法，便于在单元测试中解析 JSON 而无需运行 Flink 本地环境。
 
-- `src/main/java/com/withpy/socialplatformback/analysis/SentimentAnalyzer.java`
+- `src/main/java/com/spb/socialplatformback/analysis/SentimentAnalyzer.java`
   - 简单的情感分析器（依靠词典匹配）。这是一个轻量级的启始实现，适合原型或演示；生产中可替换为更复杂的模型或调用外部 NLP 服务。
 
-- `src/main/java/com/withpy/socialplatformback/analysis/SentimentResult.java`
+- `src/main/java/com/spb/socialplatformback/analysis/SentimentResult.java`
   - 情感分析结果的 DTO，承载比如 id/url、score（-1/0/1）、label（NEGATIVE/NEUTRAL/POSITIVE）和时间戳。
 
-- `src/main/java/com/withpy/socialplatformback/dto/HotSearchItem.java`
+- `src/main/java/com/spb/socialplatformback/dto/HotSearchItem.java`
   - 接收来自 Kafka 的 JSON 对应的 DTO（字段包括 rank, title, url, hot_count, first_crawled, source 等）。注意 JSON 字段通过 Jackson 注解映射到 Java 字段（例如 `hot_count` -> `hotCount`）。
 
 - `src/test/java/...`

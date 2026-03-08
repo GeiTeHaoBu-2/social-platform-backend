@@ -120,11 +120,11 @@ public final class KafkaTopicInspector {
 
     /**
      * 命令行运行用法：
-     * java -Dkafka.bootstrap.servers=localhost:9092 -cp yourjar com.withpy.socialplatformback.kafka.KafkaTopicInspector [topic] [--watch <ms>]
+     * java -Dkafka.bootstrap.servers=localhost:9092 -cp yourjar com.spb.socialplatformback.kafka.KafkaTopicInspector [topic] [--watch <ms>]
      * 示例：
-     *  - 单次查看（也支持）： java -Dkafka.bootstrap.servers=localhost:9092 -cp app.jar com.withpy.socialplatformback.kafka.KafkaTopicInspector weibo_hotsearch
+     *  - 单次查看（也支持）： java -Dkafka.bootstrap.servers=localhost:9092 -cp app.jar com.spb.socialplatformback.kafka.KafkaTopicInspector weibo_hotsearch
      *  - 默认（不传参数）进入 watch 模式，每 5000ms 刷新一次：
-     *      java -Dkafka.bootstrap.servers=localhost:9092 -cp app.jar com.withpy.socialplatformback.kafka.KafkaTopicInspector
+     *      java -Dkafka.bootstrap.servers=localhost:9092 -cp app.jar com.spb.socialplatformback.kafka.KafkaTopicInspector
      */
     public static void main(String[] args) {
         String bootstrap = System.getProperty("kafka.bootstrap.servers", "localhost:9092");
