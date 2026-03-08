@@ -1,6 +1,6 @@
-package com.withpy.socialplatformback.flink.pipeline;
+package com.spb.common.flink.pipeline;
 
-import com.withpy.socialplatformback.flink.dto.HotSearchItem;
+import com.spb.common.flink.dto.HotSearchItem;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

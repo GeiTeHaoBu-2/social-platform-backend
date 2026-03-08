@@ -1,4 +1,4 @@
-package com.withpy.socialplatformback.kafka;
+package com.spb.common.kafka;
 
 import org.apache.kafka.clients.admin.*;
 import org.apache.kafka.common.Node;

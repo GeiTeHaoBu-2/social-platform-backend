@@ -1,4 +1,4 @@
-package com.withpy.socialplatformback.flink.analysis;
+package com.spb.common.flink.analysis;
 
 import org.junit.jupiter.api.Test;
 

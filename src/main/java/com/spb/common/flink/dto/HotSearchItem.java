@@ -1,4 +1,4 @@
-package com.withpy.socialplatformback.flink.dto;
+package com.spb.common.flink.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

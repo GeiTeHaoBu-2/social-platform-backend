@@ -1,8 +1,8 @@
-package com.withpy.socialplatformback.web;
+package com.spb.common.web;
 
-import com.withpy.socialplatformback.flink.job.WeiboHotSearchJob;
-import com.withpy.socialplatformback.kafka.KafkaAdminHelper;
-import com.withpy.socialplatformback.config.KafkaConfig;
+import com.spb.common.flink.job.WeiboHotSearchJob;
+import com.spb.common.kafka.KafkaAdminHelper;
+import com.spb.common.config.KafkaConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

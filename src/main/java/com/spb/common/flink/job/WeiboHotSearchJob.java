@@ -1,9 +1,9 @@
-package com.withpy.socialplatformback.flink.job;
+package com.spb.common.flink.job;
 
-import com.withpy.socialplatformback.flink.analysis.SentimentResult;
-import com.withpy.socialplatformback.flink.dto.HotSearchItem;
-import com.withpy.socialplatformback.flink.pipeline.SentimentAnalysisPipeline;
-import com.withpy.socialplatformback.kafka.KafkaSourceFactory;
+import com.spb.common.flink.analysis.SentimentResult;
+import com.spb.common.flink.dto.HotSearchItem;
+import com.spb.common.flink.pipeline.SentimentAnalysisPipeline;
+import com.spb.common.kafka.KafkaSourceFactory;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
@@ -12,7 +12,6 @@ import org.apache.flink.streaming.api.functions.windowing.WindowFunction;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
-import org.apache.flink.util.Collector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

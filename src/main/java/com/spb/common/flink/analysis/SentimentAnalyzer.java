@@ -1,4 +1,4 @@
-package com.withpy.socialplatformback.flink.analysis;
+package com.spb.common.flink.analysis;
 
 import java.util.Arrays;
 import java.util.HashSet;

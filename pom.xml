@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.withpy</groupId>
-    <artifactId>social-platform-back</artifactId>
+    <artifactId>social-platform-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>social-platform-back</name>
     <description>social-platform-back</description>

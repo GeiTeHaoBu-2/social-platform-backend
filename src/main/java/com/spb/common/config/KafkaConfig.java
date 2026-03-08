@@ -1,4 +1,4 @@
-package com.withpy.socialplatformback.config;
+package com.spb.common.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

@@ -1,9 +1,9 @@
-package com.withpy.socialplatformback.flink.pipeline;
+package com.spb.common.flink.pipeline;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.withpy.socialplatformback.flink.analysis.SentimentAnalyzer;
-import com.withpy.socialplatformback.flink.analysis.SentimentResult;
-import com.withpy.socialplatformback.flink.dto.HotSearchItem;
+import com.spb.common.flink.analysis.SentimentAnalyzer;
+import com.spb.common.flink.analysis.SentimentResult;
+import com.spb.common.flink.dto.HotSearchItem;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.streaming.api.datastream.DataStream;

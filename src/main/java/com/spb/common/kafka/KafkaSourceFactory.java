@@ -1,4 +1,4 @@
-package com.withpy.socialplatformback.kafka;
+package com.spb.common.kafka;
 
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.connector.kafka.source.KafkaSource;

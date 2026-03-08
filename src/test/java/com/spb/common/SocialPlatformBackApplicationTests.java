@@ -1,6 +1,6 @@
-package com.withpy.socialplatformback;
+package com.spb.common;
 
-import com.withpy.socialplatformback.web.SocialPlatformApplication;
+import com.spb.common.web.SocialPlatformApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,3 +12,4 @@ class SocialPlatformBackApplicationTests {
     }
 
 }
+·
