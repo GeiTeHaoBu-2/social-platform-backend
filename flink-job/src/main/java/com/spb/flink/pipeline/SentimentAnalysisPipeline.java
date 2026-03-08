@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spb.flink.job.SentimentAnalyzer;
 import com.spb.flink.sink.SentimentResult;
 import com.spb.common.model.HotSearchItem;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -25,6 +26,7 @@ import java.util.Objects;
  * 1. 添加注释，详细说明每个方法的功能。
  * 2. 确认逻辑完整性，确保从 JSON 到情感分析结果的转换无遗漏。
  */
+@Slf4j
 public final class SentimentAnalysisPipeline {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
@@ -43,6 +45,7 @@ public final class SentimentAnalysisPipeline {
                     try {
                         return MAPPER.readValue(json, HotSearchItem.class);
                     } catch (Exception e) {
+                        log.error("❌ 解析 JSON 失败！收到的脏数据是: {}", json, e);
                         return null; // 解析失败 → 返回 null，后续 filter 过滤
                     }
                 })
