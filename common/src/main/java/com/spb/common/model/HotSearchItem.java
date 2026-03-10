@@ -11,12 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HotSearchItem {
 
+
+    @JsonProperty("rank")
     private int rank;
+    @JsonProperty("title")
     private String title;
+    @
     private String url;
     @JsonProperty("hot_count")
     private String hotCount;
-    private String tag;
     @JsonProperty("first_crawled")
     private long firstCrawled;
     private String source;
