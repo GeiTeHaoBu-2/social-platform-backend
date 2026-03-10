@@ -8,16 +8,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * 从 Kafka 消费到的单条微博热搜数据 DTO。
  * 由 Python 爬虫序列化为 JSON 后写入 Kafka，Flink 端反序列化使用。
  */
+//ignore开了，如果爬虫后续添加了新的字段，Flink 端不会因为找不到对应属性而抛异常，保持兼容性。
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HotSearchItem {
-
 
     @JsonProperty("rank")
     private int rank;
     @JsonProperty("title")
     private String title;
-    @
-    private String url;
     @JsonProperty("hot_count")
     private String hotCount;
     @JsonProperty("first_crawled")
@@ -43,28 +41,12 @@ public class HotSearchItem {
         this.title = title;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getHotCount() {
         return hotCount;
     }
 
     public void setHotCount(String hotCount) {
         this.hotCount = hotCount;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
     }
 
     public long getFirstCrawled() {
@@ -88,9 +70,7 @@ public class HotSearchItem {
         return "HotSearchItem{" +
                 "rank=" + rank +
                 ", title='" + title + '\'' +
-                ", url='" + url + '\'' +
                 ", hotCount='" + hotCount + '\'' +
-                ", tag='" + tag + '\'' +
                 ", firstCrawled=" + firstCrawled +
                 ", source='" + source + '\'' +
                 '}';

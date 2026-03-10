@@ -22,9 +22,10 @@ import java.util.Objects;
  *     → parseJsonStream() → DataStream<HotSearchItem>
  *     → toSentiment()     → DataStream<SentimentResult>
  *
- * 修改内容：
- * 1. 添加注释，详细说明每个方法的功能。
- * 2. 确认逻辑完整性，确保从 JSON 到情感分析结果的转换无遗漏。
+ * 设计说明：
+ * 1. 本类专注于解析和轻量级转换，保持无状态
+ * 2. 复杂业务转换已迁移至 TransformationFactory
+ * 3. ID 生成策略：使用 title + rank 组合（取代已移除的 url 字段）
  */
 @Slf4j
 public final class SentimentAnalysisPipeline {
@@ -68,7 +69,32 @@ public final class SentimentAnalysisPipeline {
     }
 
     /**
+     * 生成唯一标识符（基于 title + rank，取代已移除的 url 字段）。
+     * 策略：title + "#" + rank 的组合哈希，确保同一话题的稳定性。
+     *
+     * @param title 热搜标题
+     * @param rank  当前排名
+     * @return 唯一标识符
+     */
+    public static String generateId(String title, int rank) {
+        String raw = title + "#" + rank;
+        return Integer.toHexString(raw.hashCode());
+    }
+
+    /**
+     * 处理时间戳（秒级转毫秒级）。
+     *
+     * @param firstCrawled 首次爬取时间戳（秒级）
+     * @return 毫秒级时间戳
+     */
+    public static long resolveTimestamp(long firstCrawled) {
+        return firstCrawled > 0 ? firstCrawled * 1000L : System.currentTimeMillis();
+    }
+
+    /**
      * 将 HotSearchItem 流映射为 SentimentResult 流。
+     *
+     * 注意：此方法提供轻量级转换，完整业务转换请使用 TransformationFactory。
      *
      * @param items HotSearchItem 数据流
      * @return SentimentResult 数据流
@@ -80,13 +106,11 @@ public final class SentimentAnalysisPipeline {
                     int score = SentimentAnalyzer.analyzeScore(item.getTitle());
                     String label = SentimentAnalyzer.analyzeLabel(item.getTitle());
 
-                    // 确定时间戳，优先使用 firstCrawled，否则使用当前时间
-                    long ts = item.getFirstCrawled() > 0
-                            ? item.getFirstCrawled() * 1000L
-                            : System.currentTimeMillis();
+                    // 处理时间戳
+                    long ts = resolveTimestamp(item.getFirstCrawled());
 
-                    // 确定唯一标识符，优先使用 URL，否则使用排名
-                    String id = item.getUrl() != null ? item.getUrl() : String.valueOf(item.getRank());
+                    // 生成唯一 ID（使用 title + rank，取代 url）
+                    String id = generateId(item.getTitle(), item.getRank());
 
                     // 返回情感分析结果
                     return new SentimentResult(id, score, label, ts);
